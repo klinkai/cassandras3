@@ -16,7 +16,7 @@ def backup_cmd():  # pragma: no cover
     pass
 
 
-@backup_cmd.command(help='Execute backup')
+@backup_cmd.command(help='Execute backup using Wasabi as default s3 provider')
 @click.option('--region', default='us-east-1',
               help='Select the region for your bucket.')
 @click.option('--host', default='127.0.0.1',
