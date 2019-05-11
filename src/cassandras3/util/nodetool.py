@@ -140,11 +140,7 @@ class NodeTool(object):
 
     def _clearsnapshot(self, keyspace, tag):
         try:
-            if self.jmxusername and self.jmxpassword:
-                sh.nodetool('-u', self.jmxusername, '-pw', self.jmxpassword,
-                            '-h', self.host, '-p', self.port, 'clearsnapshot', '-t', tag, keyspace)
-            else:
-                sh.nodetool('-h', self.host, '-p', self.port, 'clearsnapshot', '-t', tag, keyspace)
+            sh.nodetool('clearsnapshot', '-t', tag, keyspace)
 
         except:
             logger.error('Command possibly unfinished due to errors!')
@@ -152,11 +148,7 @@ class NodeTool(object):
 
     def _refresh(self, keyspace, table):
         try:
-            if self.jmxusername and self.jmxpassword:
-                sh.nodetool('-u', self.jmxusername, '-pw', self.jmxpassword,
-                            '-h', self.host, '-p', self.port, 'refresh', keyspace, table)
-            else:
-                sh.nodetool('-h', self.host, '-p', self.port, 'refresh', keyspace, table)
+            sh.nodetool('refresh', keyspace, table)
         except:
             logger.error('Command possibly unfinished due to errors!')
             raise
