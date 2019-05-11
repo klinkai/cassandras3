@@ -7,7 +7,7 @@ logger = logging.getLogger('cassandras3')
 
 class NodeTool(object):
     def __init__(self, clients, hostname='localhost', host='127.0.0.1', port=7199,
-                 cassandra_data_dir='/var/lib/cassandra/data', jmxusername='', jmxpassword='',
+                 cassandra_data_dir='/var/lib/scylla/data', jmxusername='', jmxpassword='',
                  kmskeyid=''):
         self.s3 = clients.s3()
         self.hostname = hostname
@@ -133,11 +133,7 @@ class NodeTool(object):
 
     def _snapshot(self, keyspace, tag):
         try:
-            if self.jmxusername and self.jmxpassword:
-                sh.nodetool('-u', self.jmxusername, '-pw', self.jmxpassword,
-                            '-h', self.host, '-p', self.port, 'snapshot', '-t', tag, keyspace)
-            else:
-                sh.nodetool('-h', self.host, '-p', self.port, 'snapshot', '-t', tag, keyspace)
+            sh.nodetool('snapshot', '-t', tag, keyspace)
         except:
             logger.error('Command possibly unfinished due to errors!')
             raise
