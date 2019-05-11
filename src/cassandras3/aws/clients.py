@@ -1,5 +1,8 @@
 import logging
 
+import os
+
+
 import boto3
 
 logger = logging.getLogger('cassandras3')
@@ -27,6 +30,6 @@ class ClientCache(object):
             return cached
         region = region or self.region
         logger.debug('Connecting to %s in %s.', service_name, region)
-        client = boto3.client(service_name, region)
+        client = boto3.client(service_name, region, endpoint_url=os.getenv('AWS_ENDPOINT', 'https://s3.wasabisys.com'))
         self._clients[service_name] = client
         return client

@@ -7,6 +7,16 @@ A simple tool to help you backup and restore your cassandra data to and from S3.
 
 ### AWS
 
+Added in this fork option to use CassandraS3 with Wasabi or others provides, simple addint a AWS_ENDPOINT envrioment variable.
+
+PS: Wasabi is the default endpoint
+
+Example in Linux:
+
+``` 
+export AWS_ENDPOINT=https://s3.wasabisys.com
+```
+
 This utility assumes you have correctly set up a (local) credentials file (via e.g. `aws configure`), it is also possible to pass credentials using the CLI environment variables:
 
 ```
@@ -20,13 +30,7 @@ The recommended way is to give nodes that run the backups permissions to the buc
 
 ### Installation
 
-On Debian-based systems, make sure you have installed the `python-pip` package.
-
-```
-pip install cassandras3
-```
-
-Or install manually:
+install manually:
 ```
 git clone git@github.com:DeviaVir/cassandras3.git
 cd cassandras3
